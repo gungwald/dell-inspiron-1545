@@ -1,0 +1,20 @@
+# /etc/libinput/local-overrides.quirks
+#
+# Operating System:	Linux
+# Graphics System:	Wayland
+# Input System:		libinput
+# Distribution:		Fedora and possibly others
+# Desktop:		Gnome and possibly others
+#
+# The touchpad on this laptop requires a touch pressure that is too high,
+# so that half of the attempts to click or drag are not recognized.
+#
+# Related commands:
+#    sudo libinput list-devices
+#    libinput quirks list --verbose /dev/input/event4 ; # Replace event4 with device from previous command
+#    sudo libinput measure touchpad-pressure ; # Doesn't print any events in Fedora 33
+[Dell Inspiron 1545 - Touchpad]
+MatchUdevType=touchpad
+MatchName=*AlpsPS/2 ALPS GlidePoint
+MatchDMIModalias=dmi:*svnDellInc.:*pnInspiron1545*
+AttrPressureRange=10:8
